@@ -1,0 +1,35 @@
+
+<div class="container">
+    <select #chosenProfile (change) = "reload(chosenProfile.selectedIndex)">
+        @for (profile of ProfileObject; track $index) {
+            <option value="{{$index}}">{{profile.id}}</option>
+        }
+    </select>
+    
+    <h2>User Profile</h2>
+    
+    <div class="profile-header">
+        <div class="avatar">{{ProfileObject[selectedIndex].avatar}}</div>
+        <div class="user-info">
+            <div class="user-name">{{ProfileObject[selectedIndex].user_name}}</div>
+            <div class="user-email">{{ProfileObject[selectedIndex].email}}</div>
+        </div>
+    </div>
+    
+    <h2>Időpontjaim</h2>
+    
+    <table class="stats-table">
+        <tr>
+            <th>Időpont</th>
+            <th>Szolgáltatás</th>
+            <th>Ár</th>
+            <th>Időpont lemondás</th>
+        </tr>
+        <tr>
+            <td>{{ProfileObject[selectedIndex].foglaltIdopont.idopont}}</td>
+            <td>{{ProfileObject[selectedIndex].foglaltIdopont.szolgaltatas}}</td>
+            <td>{{ProfileObject[selectedIndex].foglaltIdopont.ar}}</td>
+            <td><a href="#" class="lemondas-link">Lemondás</a></td>
+        </tr>
+    </table>
+</div>

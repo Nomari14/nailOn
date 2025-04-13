@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="header">
+        <h2>Időpontfoglalás</h2>
+    
+    </div>
+    <div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Válassz szolgaltatást:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form></form>
+            <tr>
+                <td>Erősített géllakk<br><span>12 500 Ft</span></td>
+                <td><input type="radio" name="szolgaltatasok" class="choices" value="gellak"></td>
+                
+            </tr>
+            <tr>
+                <td>Rövid műköröm (S méret)<br><span>14 500 ft</span></td>
+                <td><input type="radio" class="choices" name="szolgaltatasok" value="rovid-mukorom" /></td>
+            
+            </tr>
+            <tr>
+                <td>Közepesen hosszú műköröm (M méret)<br><span>16 500 Ft</span></td>
+                <td><input type="radio" class="choices" name="szolgaltatasok" value="kozepes-mukorom" /></td>
+            
+            </tr>
+            <tr>
+                <td>Hosszú műköröm (L méret)<br><span>19 500 Ft</span></td>
+                <td><input type="radio" class="choices" name="szolgaltatasok" value="hosszu-mukorom" /></td>
+            
+            </tr>
+            <tr>
+                <td>Műköröm építés (S-M)<br><span>16 500 Ft</span></td>
+                <td><input type="radio" class="choices" name="szolgaltatasok" value="mukorom-epites" /></td>
+            
+            </tr>
+            <tr>
+                <td>Manikűr<br><span>4 000 Ft</span></td>
+                <td><input type="radio" class="choices" name="szolgaltatasok" value="manikur" /></td>
+            
+            </tr>
+            <tr>
+                <td>Japán manikűr<br><span>4 500 Ft</span></td>
+                <td><input type="radio" class="choices" name="szolgaltatasok" value="japan-manikur" /></td>
+            
+            </tr>
+        </tbody>
+    </table>
+    <div class="ido">
+        <!--
+        <p for="datum">Válassz dátumot:</p>
+        <input type="date" id="datum" name="datum" class="ido">
+    -->
+    <mat-form-field>
+        <mat-label>Válassz dátumot:</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="ido">
+        <!--
+        <p for="datum">Válassz időpontot:</p>
+        <input type="time" id="idopont" name="idopont" class="ido" min="08:00" max="18:00">
+        -->
+        <mat-form-field class="time">
+            <mat-label>Pick a time</mat-label>
+            <input matInput [matTimepicker]="picker1">
+            <mat-timepicker-toggle matIconSuffix [for]="picker1"/>
+            <mat-timepicker #picker1/>
+          </mat-form-field>
+    </div>
+
+    <div class="button_foglalas">
+        <button mat-raised-button color="primary" class="button">Foglalás</button>
+    </div>
+</div>
