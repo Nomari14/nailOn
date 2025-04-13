@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit{
   constructor(private router: Router){
 
   }
+  imagePath: string= "C:/Users/maria/project/public/korom.jpg"
 
   ngOnInit(): void {
     this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
