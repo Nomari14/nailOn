@@ -1,4 +1,6 @@
 export interface Reserved {
+    id: string;
     name: string;
-    datum: Date;
+    price: string;
+    datetime: string;
   }

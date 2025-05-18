@@ -1,13 +1,12 @@
-/*
-.backround_image{
-    width: 100%;
-    height: 100vh;
-    background-image:url("/korom.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-    */
+
+    .image{
+        height: 100%;
+        background-image:url("/korom_natur.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+        
 nav {
     display: flex;
     justify-content: flex-end;
@@ -25,7 +24,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: white;
+    color:  rgb(248, 131, 121);
     font-size: 20px;
 }
 
@@ -34,8 +33,10 @@ mat-sidenav-container {
 }
 
 mat-toolbar{
-    background-color: rgb(222, 49, 99, 0.7);
-    color: white;
+    color:  rgb(248, 131, 121);
+    background-color: rgb(255,248,247, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
     mat-icon {
         color: white;
     }
@@ -44,6 +45,19 @@ mat-toolbar{
 mat-sidenav {
     border-radius: 0;
 }
+/* .image{
+    height: 100%;
+    background-image:url("/korom_natur.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.darker{
+    height: 100%;
+    //background-color: rgb(0, 0, 0, 0.1);
+} */
 
 .menu-toggle-button {
     display: none;

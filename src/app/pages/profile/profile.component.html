@@ -1,35 +1,48 @@
 
+<div class="backround">
 <div class="container">
-    <select #chosenProfile (change) = "reload(chosenProfile.selectedIndex)">
-        @for (profile of ProfileObject; track $index) {
-            <option value="{{$index}}">{{profile.id}}</option>
-        }
-    </select>
     
-    <h2>User Profile</h2>
+    <h2>Fiókom</h2>
+    @if (isLoading) {
+        <div class="loading-container">
+          <p>Fiók betöltése...</p>
+        </div>
+      }
+       @else if (user) {
     
     <div class="profile-header">
-        <div class="avatar">{{ProfileObject[selectedIndex].avatar}}</div>
+        <div class="avatar">{{ getUserInitials() }}</div>
         <div class="user-info">
-            <div class="user-name">{{ProfileObject[selectedIndex].user_name}}</div>
-            <div class="user-email">{{ProfileObject[selectedIndex].email}}</div>
+            <div class="user-name">{{ user.name.firstname }} {{ user.name.lastname }}</div>
+            <div class="user-email">{{ user.email }}</div>
         </div>
     </div>
     
     <h2>Időpontjaim</h2>
+    <table mat-table [dataSource]="reservations" class="stats-table">
+        <ng-container matColumnDef="datetime">
+        <th mat-header-cell *matHeaderCellDef> Időpont </th>
+        <td mat-cell *matCellDef="let element"> {{element.datetime}} </td>
+        </ng-container>
     
-    <table class="stats-table">
-        <tr>
-            <th>Időpont</th>
-            <th>Szolgáltatás</th>
-            <th>Ár</th>
-            <th>Időpont lemondás</th>
-        </tr>
-        <tr>
-            <td>{{ProfileObject[selectedIndex].foglaltIdopont.idopont}}</td>
-            <td>{{ProfileObject[selectedIndex].foglaltIdopont.szolgaltatas}}</td>
-            <td>{{ProfileObject[selectedIndex].foglaltIdopont.ar}}</td>
-            <td><a href="#" class="lemondas-link">Lemondás</a></td>
-        </tr>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Szolgáltatás </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Ár </th>
+          <td mat-cell *matCellDef="let element"> {{ element.price }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Lemondás </th>
+          <td mat-cell *matCellDef="let element"><a href="#" class="lemondas-link" (click)="delReservation(element.id); $event.preventDefault()">Lemondás</a>  </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    }
+</div>
 </div>

@@ -1,1 +1,75 @@
-<p>signup works!</p>
+<div class="backround">
+<div class="signup-container">
+    
+    @if (isLoading) {
+      <div class="loading-container">
+        <h2>Regisztráció folyamatban</h2>
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Kérjük várjon...</p>
+      </div>
+    }
+  
+    @if (showForm) {
+        <h2>Regisztráció</h2>
+      <form [formGroup]="signUpForm" (ngSubmit)="signup()" class="signup-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+             @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+                <mat-error>Adjon meg egy érvényes email címet</mat-error>
+            }
+          </mat-form-field>
+
+        <div class="name-row" formGroupName="name">
+          <mat-form-field appearance="outline">
+            <mat-label>Vezetéknév</mat-label>
+            <input matInput formControlName="firstname">
+            <mat-icon matSuffix>person</mat-icon>
+            @if (signUpForm.get('name.lastname')?.invalid && signUpForm.get('name.lastname')?.touched) {
+                <mat-error>Vezetéknévnek legalább 2 karakter hosszú legyen</mat-error>
+            }
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Keresztnév</mat-label>
+            <input matInput formControlName="lastname">
+            <mat-icon matSuffix>person</mat-icon>
+             @if (signUpForm.get('name.firstname')?.invalid && signUpForm.get('name.firstname')?.touched) {
+                <mat-error>Keresztnévnek legalább 2 karakter hosszú legyen</mat-error>
+            }
+          </mat-form-field>
+        </div>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Jelszó</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-icon matSuffix>lock</mat-icon>
+          @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
+            <mat-error>A jelszónak legalább 8 karakter hosszú legyen</mat-error>
+          }
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Jelszó megerősítése</mat-label>
+          <input matInput type="password" formControlName="rePassword">
+          <mat-icon matSuffix>lock</mat-icon>
+          @if (signUpForm.get('rePassword')?.value !== signUpForm.get('password')?.value) {
+            <mat-error>A jelszók nem egyeznek</mat-error>
+           }   
+        </mat-form-field>
+
+        @if (signupError) {
+        <div class="error-message">
+          {{ signupError }}
+        </div>
+      }
+  
+        <div class="buttons-row">
+          <button mat-flat-button class="button" type="submit" [disabled]="signUpForm.invalid">Regisztráció</button>
+          <button mat-flat-button class="button" [routerLink]="['/login']">Már van fiókod?</button>
+        </div>
+      </form>
+    }
+  </div>
+  </div>

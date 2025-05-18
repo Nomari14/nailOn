@@ -1,5 +1,5 @@
-<div class="login-container">
-    <h2>Bejelentkezés</h2>
+<div class="backround">
+  <div class="login-container">
     
     @if (isLoading) {
       <div class="loading-container">
@@ -10,6 +10,7 @@
     }
   
     @if (showLoginForm) {
+      <h2>Bejelentkezés</h2>
       <form (ngSubmit)="login()" class="login-form">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
@@ -33,4 +34,5 @@
         <button mat-flat-button [routerLink]="['/signup']" class="button">Regisztráció</button>
       </form>
     }
+    </div>
   </div>

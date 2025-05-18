@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="image">
   <mat-sidenav #sidenav>
     <app-menu [sidenav]="sidenav"></app-menu>
   </mat-sidenav>
@@ -15,7 +15,6 @@
         <ul>
           <li><a routerLink="/home">Főoldal</a></li>
           <li><a routerLink="/reservation">Időpontfoglalás</a></li>
-          <!--<li><a routerLink="/profile">Profil</a></li>-->
           @if (isLoggedIn) {
             <li><a routerLink="/profile">Profil</a></li>
           }

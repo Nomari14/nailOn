@@ -1,10 +1,11 @@
+<div class="backround">
 <div class="container">
     <div class="header">
         <h2>Időpontfoglalás</h2>
-    
     </div>
     <div>
-    
+    <mat-card-content>
+    <form [formGroup]="reservationForm" (ngSubmit)="addReservation()">
     <table>
         <thead>
             <tr>
@@ -12,70 +13,78 @@
             </tr>
         </thead>
         <tbody>
-            <form></form>
             <tr>
                 <td>Erősített géllakk<br><span>12 500 Ft</span></td>
-                <td><input type="radio" name="szolgaltatasok" class="choices" value="gellak"></td>
+                <td><input type="radio" formControlName="name" name="name" class="choices" value="Erősített géllakk:12 500 Ft"></td>
                 
             </tr>
             <tr>
-                <td>Rövid műköröm (S méret)<br><span>14 500 ft</span></td>
-                <td><input type="radio" class="choices" name="szolgaltatasok" value="rovid-mukorom" /></td>
+                <td>Rövid műköröm (S méret)<br><span>14 500 Ft</span></td>
+                <td><input type="radio" formControlName="name" class="choices" name="name" value="Rövid műköröm (S méret):14 500 Ft" /></td>
             
             </tr>
             <tr>
                 <td>Közepesen hosszú műköröm (M méret)<br><span>16 500 Ft</span></td>
-                <td><input type="radio" class="choices" name="szolgaltatasok" value="kozepes-mukorom" /></td>
+                <td><input type="radio" formControlName="name" class="choices" name="name" value="Közepesen hosszú műköröm (M méret):16 500 Ft" /></td>
             
             </tr>
             <tr>
                 <td>Hosszú műköröm (L méret)<br><span>19 500 Ft</span></td>
-                <td><input type="radio" class="choices" name="szolgaltatasok" value="hosszu-mukorom" /></td>
+                <td><input type="radio" formControlName="name" class="choices" name="name" value="Hosszú műköröm (L méret):19 500 Ft" required/></td>
             
             </tr>
             <tr>
                 <td>Műköröm építés (S-M)<br><span>16 500 Ft</span></td>
-                <td><input type="radio" class="choices" name="szolgaltatasok" value="mukorom-epites" /></td>
+                <td><input type="radio" formControlName="name" class="choices" name="name" value="Műköröm építés (S-M):16 500 Ft" required/></td>
             
             </tr>
             <tr>
                 <td>Manikűr<br><span>4 000 Ft</span></td>
-                <td><input type="radio" class="choices" name="szolgaltatasok" value="manikur" /></td>
+                <td><input type="radio" formControlName="name" class="choices" name="name" value="Manikűr:4 000 Ft" required/></td>
             
             </tr>
             <tr>
                 <td>Japán manikűr<br><span>4 500 Ft</span></td>
-                <td><input type="radio" class="choices" name="szolgaltatasok" value="japan-manikur" /></td>
+                <td><input type="radio" formControlName="name" class="choices" name="name" value="Japán manikűr:4 500 Ft" required/></td>
             
             </tr>
         </tbody>
     </table>
     <div class="ido">
-        <!--
-        <p for="datum">Válassz dátumot:</p>
-        <input type="date" id="datum" name="datum" class="ido">
-    -->
     <mat-form-field>
         <mat-label>Válassz dátumot:</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="datepicker" formControlName="date">
+        <mat-datepicker #datepicker/>
+        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="ido">
-        <!--
-        <p for="datum">Válassz időpontot:</p>
-        <input type="time" id="idopont" name="idopont" class="ido" min="08:00" max="18:00">
-        -->
         <mat-form-field class="time">
-            <mat-label>Pick a time</mat-label>
-            <input matInput [matTimepicker]="picker1">
-            <mat-timepicker-toggle matIconSuffix [for]="picker1"/>
+            <mat-label>Válassz időpontot:</mat-label>
+            <input 
+            matInput formControlName="time"
+            [matTimepicker]="timepicker" matTimepickerMin="08:00"
+            matTimepickerMax="18:00">
+            <mat-timepicker #timepicker/>
+            <mat-timepicker-toggle matIconSuffix [for]="timepicker"/>
             <mat-timepicker #picker1/>
+           
           </mat-form-field>
     </div>
 
     <div class="button_foglalas">
-        <button mat-raised-button color="primary" class="button">Foglalás</button>
+        <button mat-raised-button type="submit" color="primary" class="button">
+            @if (isLoading) {
+            <div class="spinner-button">
+            <mat-spinner diameter="24" ></mat-spinner>
+            </div>
+          } @else {
+            Foglalás
+          }
+        </button>
     </div>
+    </form>
+    </mat-card-content>
+</div>
 </div>
